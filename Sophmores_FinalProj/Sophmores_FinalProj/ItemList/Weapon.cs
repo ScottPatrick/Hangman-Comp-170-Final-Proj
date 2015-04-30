@@ -1,41 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sophmores_FinalProj
+﻿namespace Sophmores_FinalProj
 {
   public class Weapon : Item
   {
+    #region Public Properties
+
+    public int magicalDamage { get; private set; }
+
     /// <summary>
-    /// Weapons Inherit from Item class
-    /// All weapons are Equippable
-    /// By default weapons are not consumable
+    /// Weapons Inherit from Item class All weapons are Equippable By
+    /// Default weapons are not consumable
     /// </summary>
     public int physicalDamage { get; private set; }
-    public int magicalDamage { get; private set; }
+
+    #endregion Public Properties
+
+    #region Public Constructors
+
     /// <summary>
-    /// Create a Custom Weapon, inherhits Item
+    /// Create a Custom Weapon, inherhits Item 
     /// </summary>
-    /// <param name="Name">Weapon Name</param>
-    /// <param name="Type">Weapon Type</param>
-    /// <param name="Description">Weapon Description</param>
-    /// <param name="PhysicalDamage">Physical Damage Value</param>
-    /// <param name="MagicalDamage">Magical Damage Value</param>
-    public Weapon(string Name, string Type, string Description, 
+    /// <param name="Name"> Weapon Name </param>
+    /// <param name="Type"> Weapon Type </param>
+    /// <param name="Description"> Weapon Description </param>
+    /// <param name="PhysicalDamage"> Physical Damage Value </param>
+    /// <param name="MagicalDamage"> Magical Damage Value </param>
+    public Weapon(string Name, string Type, string Description,
                   int PhysicalDamage, int MagicalDamage)
-      : base (Name, Type, Description)
+      : base(Name, Type, Description)
     {
       physicalDamage = PhysicalDamage;
       magicalDamage = MagicalDamage;
       playerCanEquip = true;
       consumable = false;
     }
+
     /// <summary>
-    /// Create new weapon from old weapon
+    /// Create new weapon from old weapon 
     /// </summary>
-    /// <param name="OldWeapon">Weapon to Copy</param>
+    /// <param name="OldWeapon"> Weapon to Copy </param>
     public Weapon(Weapon OldWeapon)
     {
       name = OldWeapon.name;
@@ -46,8 +48,9 @@ namespace Sophmores_FinalProj
       playerCanEquip = true;
       consumable = false;
     }
+
     /// <summary>
-    /// Create An Old Rusty Sword, starter weapon
+    /// Create An Old Rusty Sword, starter weapon 
     /// </summary>
     public Weapon()
     {
@@ -59,5 +62,7 @@ namespace Sophmores_FinalProj
       playerCanEquip = true;
       consumable = false;
     }
+
+    #endregion Public Constructors
   }
 }

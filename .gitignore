@@ -53,6 +53,8 @@ $RECYCLE.BIN/
 bin/
 obj/
 *.userprefs
+#*.csproj
+#*.sln
 
 
 ### VisualStudio ###

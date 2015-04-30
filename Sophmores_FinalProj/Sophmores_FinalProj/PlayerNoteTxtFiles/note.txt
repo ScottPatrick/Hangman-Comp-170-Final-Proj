@@ -1,0 +1,26 @@
+﻿
+         
+       ________________________________________
+      |                                        |
+      |           **  WARNING **               |  
+      |                                        |  
+      |      As you can see, there are four    |  
+      |      doors in front of you. behind     |  
+      |      the biggest door is where you     |  
+      |      will find what you are looking    |  
+      |      for. However, in order to get     |  
+      |      access to that door, you will     |  
+      |      need to get all three keys.       | 
+      |      Each of which are being guarded   |  
+      |      By a monster. You will need to    |  
+      |      enter each one of the other 3     |  
+      |      doors and defeat each monster     |  
+      |      to get a hold of the key it       |  
+      |      protects. Many have tried but     |
+      |      so far none have prevailed. I     |  
+      |      wish you the best of luck.        |  
+      |                                        |
+      |                        |\/\/\/\/\/\/\/\|    
+      |                    ~~~O|                        
+      |________________________|                     
+                                      

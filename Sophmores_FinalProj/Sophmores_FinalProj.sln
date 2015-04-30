@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sophmores_FinalProj", "Soph
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ui", "ui\ui.csproj", "{2262CE21-C5AD-4EDE-B384-EC2BD91585E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fio", "fio\fio.csproj", "{38702508-4BEE-4055-B478-1F9FA30C1630}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fio(depreciated)", "fio\fio(depreciated).csproj", "{38702508-4BEE-4055-B478-1F9FA30C1630}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game", "Game\Game.csproj", "{185DC41D-14EF-4377-ABD9-A649688D9FF4}"
 EndProject

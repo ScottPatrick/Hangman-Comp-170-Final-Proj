@@ -1,35 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sophmores_FinalProj.Utilities
 {
   public class Inventory
   {
+    #region Public Properties
+
     public Dictionary<Item, int> contents { get; private set; }
+
+    #endregion Public Properties
+
+    #region Public Constructors
+
     public Inventory()
     {
       contents = new Dictionary<Item, int>();
     }
+
     /// <summary>
-    /// Create new inventory from one that already exists
+    /// Create new inventory from one that already exists 
     /// </summary>
-    /// <param name="OldInventory">Inventory to be copied from</param>
-    public Inventory (Inventory OldInventory)
+    /// <param name="OldInventory"> Inventory to be copied from </param>
+    public Inventory(Inventory OldInventory)
     {
       if (OldInventory != null)
       {
-          contents = new Dictionary<Item, int>(OldInventory.contents);
+        contents = new Dictionary<Item, int>(OldInventory.contents);
+      }
+      else
+      {
+        contents = new Dictionary<Item, int>();
       }
     }
+
+    #endregion Public Constructors
+
+    #region Public Methods
+
     /// <summary>
-    /// Add Item to inventory
+    /// Add Item to inventory 
     /// </summary>
-    /// <param name="item">item</param>
-    /// <param name="itemCount">Number of the SAME item to add</param>
-     public void Add(Item item, int itemCount)
+    /// <param name="item"> item </param>
+    /// <param name="itemCount"> Number of the SAME item to add </param>
+    public void Add(Item item, int itemCount)
     {
       if (contents.ContainsKey(item))
       {
@@ -40,11 +54,12 @@ namespace Sophmores_FinalProj.Utilities
         contents.Add(item, itemCount);
       }
     }
+
     /// <summary>
-    /// Removes specified amount of Items
+    /// Removes specified amount of Items 
     /// </summary>
-    /// <param name="item">Item</param>
-    /// <param name="ItemCount">Number of items to Remove</param>
+    /// <param name="item"> Item </param>
+    /// <param name="ItemCount"> Number of items to Remove </param>
     public void Remove(Item item, int itemCount)
     {
       if (contents.ContainsKey(item))
@@ -61,5 +76,7 @@ namespace Sophmores_FinalProj.Utilities
         Console.WriteLine("You're not carrying a {0}", item.name);
       }
     }
+
+    #endregion Public Methods
   }
 }
