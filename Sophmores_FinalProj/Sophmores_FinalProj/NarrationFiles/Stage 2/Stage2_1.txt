@@ -1,0 +1,12 @@
+﻿--------------------------------------------------------------------------------
+
+As you close the door behind you, you check the handle like you did last time
+ - It's locked.
+
+  "Well I was ready for this..." you mutter out.
+
+  As you take a few steps into this new part of the cavern you notice how
+different it is from the last. The air is very humid and you start to break out
+into a sweat.
+
+--------------------------------------------------------------------------------

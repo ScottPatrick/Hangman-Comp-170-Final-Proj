@@ -2,19 +2,29 @@
 
 namespace Sophmores_FinalProj
 {
+  /// <summary>
+  /// Basic enemy Class, have Max and Min Damage values For random Hit damage 
+  /// </summary>
   public class Enemy : Character
   {
-    /// <summary>
-    /// Basic enemy Class, have Max and Min Damage values For random Hit damage 
-    /// </summary>
 
     #region Public Properties
-
+    /// <summary>
+    /// Enemies are strong against non-matching affinities
+    /// </summary>
     public string Affinity { get; set; }
-
+    /// <summary>
+    /// Max Damage an Enemy can do
+    /// </summary>
     public int MaxDamage { get; set; }
-
+    /// <summary>
+    /// Minimum Damage an Enemy can do
+    /// </summary>
     public int MinDamage { get; set; }
+    /// <summary>
+    /// Files that will be printed upon entering Combat
+    /// </summary>
+    public string[] ArtFiles { get; private set; }
 
     #endregion Public Properties
 
@@ -25,11 +35,12 @@ namespace Sophmores_FinalProj
     /// </summary>
     public Enemy()
     {
-      Name = "Plauged Rat";
+      Name = "Plagued Rat";
       Affinity = "n";
       MinDamage = 5;
       MaxDamage = 10;
       BuffMultiplier = 1;
+      ArtFiles = SetArtFiles();
     }
 
     /// <summary>
@@ -43,6 +54,7 @@ namespace Sophmores_FinalProj
       MinDamage = 5;
       MaxDamage = 10;
       BuffMultiplier = 1;
+      ArtFiles = SetArtFiles();
     }
 
     /// <summary>
@@ -61,6 +73,7 @@ namespace Sophmores_FinalProj
       MaxDamage = maxDamage;
       BuffMultiplier = 1;
       Affinity = "n";
+      ArtFiles = SetArtFiles();
     }
 
     /// <summary>
@@ -80,6 +93,7 @@ namespace Sophmores_FinalProj
       MaxDamage = maxDamage;
       BuffMultiplier = 1;
       Affinity = affinity;
+      ArtFiles = SetArtFiles();
     }
 
     /// <summary>
@@ -100,8 +114,21 @@ namespace Sophmores_FinalProj
       MaxDamage = maxDamage;
       Affinity = affinity;
       BuffMultiplier = buffMultiplier;
+      ArtFiles = SetArtFiles();
     }
 
     #endregion Public Constructors
+
+    #region Private Methods
+    private string[] SetArtFiles()
+    {
+      ArtFiles = new string[3];
+      for (int i = 0; i < ArtFiles.Length; i++)
+      {
+        ArtFiles[i] = (this.Name + i + ".txt");
+      }
+      return ArtFiles;
+    }
+    #endregion Private Methods
   }
 }

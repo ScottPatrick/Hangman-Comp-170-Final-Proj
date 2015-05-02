@@ -1,5 +1,8 @@
 ﻿namespace Sophmores_FinalProj
 {
+  /// <summary>
+  /// Keys tend to be able to open doors...
+  /// </summary>
   public class Key : Item
   {
     #region Public Constructors

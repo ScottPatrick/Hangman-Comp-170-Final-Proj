@@ -46,6 +46,20 @@ namespace Sophmores_FinalProj
     }
 
     /// <summary>
+    /// Creates an Non-Player, Non-Combat Character 
+    /// </summary>
+    /// <param name="Name"> Character Name </param>
+    /// <param name="Health"> Character Health </param>
+    public Character(string Name, int Health)
+    {
+      this.Name = Name;
+      TotalHP = Health;
+      CurrentHP = Health;
+      this.Level = 1;
+      inventory = new Inventory();
+    }
+
+    /// <summary>
     /// Creates an Nameable Default Character Similar to Peasants! 
     /// </summary>
     /// <param name="Name"> Character Name </param>
@@ -169,7 +183,6 @@ namespace Sophmores_FinalProj
     /// <summary>
     /// Uses the Specified Poison 
     /// </summary>
-
     public void UsePoison(Poison poi)
     {
       ApplyBuffOrDebuff(poi.Potency);

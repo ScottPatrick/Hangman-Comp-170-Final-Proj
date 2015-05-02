@@ -6,17 +6,30 @@ namespace Sophmores_FinalProj.Utilities
 {
   /// <summary>
   /// Holds Utility code for manipulating the console window 
+  ///   <remarks>
+  ///   Call SetStartingDirectory() 
+  ///   First to speed up file searches
+  ///   </remarks>
   /// </summary>
   public class TextUtil
   {
     #region Private Fields
 
     private static string fullFilePath = string.Empty;
+    private static string workingDirectory;
     private static char[] noChar = { };
 
     #endregion Private Fields
 
     #region Public Methods
+    /// <summary>
+    /// Call this method first!!
+    /// </summary>
+    public static void SetStartingDirectory()
+    {
+      string setDirectory = Directory.GetCurrentDirectory();
+      workingDirectory = setDirectory;
+    }
 
     /// Read a long line and return it wrapped into lines. Such data is
     /// easiest generated in a regular word processor that automatically
@@ -49,6 +62,29 @@ namespace Sophmores_FinalProj.Utilities
     }
 
     /// <summary>
+    /// Prints standard Press Any Key to Continue Message then writes a newline 
+    /// </summary>
+    public static void PressAnyKeyNOBufferClear()
+    {
+      string message = ("\nPress any key to continue...");
+      Console.WriteLine(message);
+      Console.ReadKey();
+      Console.WriteLine();
+    }
+
+    /// <summary>
+    /// Prints custom Press Any Key to Continue message then writes a newline 
+    /// </summary>
+    /// <param name="message"> Message to display to player </param>
+    public static void PressAnyKeyNOBufferClear(string message)
+    {
+      Console.WriteLine("\n" + message);
+      Console.ReadKey();
+      Console.WriteLine();
+    }
+
+
+    /// <summary>
     /// Prints to Console the contents of the supplied text File AND Returns
     /// file contents as String
     /// * Throws NotSupportedException* if param is not a '.txt'
@@ -69,7 +105,7 @@ namespace Sophmores_FinalProj.Utilities
     /// <param name="textFileToRead"> The text file to be read and printed </param>
     public static void PrintTextFile(string textFileToRead)
     {
-      string txt = ".txt";
+      string txt = "txt";
       if (textFileToRead.EndsWith(txt))
       {
         string Location = FindTextFile(textFileToRead);
@@ -148,6 +184,7 @@ namespace Sophmores_FinalProj.Utilities
     /// null if file not found</returns>
     private static string FindTextFile(string textFile)
     {
+      Directory.SetCurrentDirectory(workingDirectory);
       string[] array = { ".", "..", Path.Combine("..", "..") ,
                                     Path.Combine("..", "..", "..") ,
                                     Path.Combine("..", "..", "..", "..") };

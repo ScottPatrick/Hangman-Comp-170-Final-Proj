@@ -7,7 +7,13 @@ namespace Sophmores_FinalProj
   public static class GameIntro
   {
     #region Public Methods
-
+    /// <summary>
+    /// Plot and Main Character Creation
+    /// </summary>
+    /// <param name="mainCharacter">
+    ///  Main Character is returned with name from player input
+    /// </param>
+    /// <returns></returns>
     public static Player Start(Player mainCharacter)
     {
       TextUtil.PressAnyKeyBufferClear("Press any key to begin your adventure...");

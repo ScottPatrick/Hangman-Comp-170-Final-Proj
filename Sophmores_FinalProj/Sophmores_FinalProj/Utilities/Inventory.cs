@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Sophmores_FinalProj.Utilities
 {
-  public class Inventory
+  /// <summary>
+  /// Inventories for characters, contain simple methods
+  /// For adding and Removing Items
+  /// </summary>
+  public class Inventory 
   {
     #region Public Properties
 
@@ -12,7 +17,9 @@ namespace Sophmores_FinalProj.Utilities
     #endregion Public Properties
 
     #region Public Constructors
-
+    /// <summary>
+    /// Creates a new inventory
+    /// </summary>
     public Inventory()
     {
       contents = new Dictionary<Item, int>();
@@ -78,5 +85,6 @@ namespace Sophmores_FinalProj.Utilities
     }
 
     #endregion Public Methods
+
   }
 }

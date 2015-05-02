@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sophmores_FinalProj", "Soph
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ui", "ui\ui.csproj", "{2262CE21-C5AD-4EDE-B384-EC2BD91585E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fio(depreciated)", "fio\fio(depreciated).csproj", "{38702508-4BEE-4055-B478-1F9FA30C1630}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game", "Game\Game.csproj", "{185DC41D-14EF-4377-ABD9-A649688D9FF4}"
 EndProject
 Global
@@ -43,16 +41,6 @@ Global
 		{2262CE21-C5AD-4EDE-B384-EC2BD91585E6}.Release|Mixed Platforms.Build.0 = Release|x86
 		{2262CE21-C5AD-4EDE-B384-EC2BD91585E6}.Release|x86.ActiveCfg = Release|x86
 		{2262CE21-C5AD-4EDE-B384-EC2BD91585E6}.Release|x86.Build.0 = Release|x86
-		{38702508-4BEE-4055-B478-1F9FA30C1630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38702508-4BEE-4055-B478-1F9FA30C1630}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38702508-4BEE-4055-B478-1F9FA30C1630}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{38702508-4BEE-4055-B478-1F9FA30C1630}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{38702508-4BEE-4055-B478-1F9FA30C1630}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{38702508-4BEE-4055-B478-1F9FA30C1630}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38702508-4BEE-4055-B478-1F9FA30C1630}.Release|Any CPU.Build.0 = Release|Any CPU
-		{38702508-4BEE-4055-B478-1F9FA30C1630}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{38702508-4BEE-4055-B478-1F9FA30C1630}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{38702508-4BEE-4055-B478-1F9FA30C1630}.Release|x86.ActiveCfg = Release|Any CPU
 		{185DC41D-14EF-4377-ABD9-A649688D9FF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{185DC41D-14EF-4377-ABD9-A649688D9FF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{185DC41D-14EF-4377-ABD9-A649688D9FF4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

@@ -1,14 +1,18 @@
 ﻿namespace Sophmores_FinalProj
-{
+{ 
+  /// <summary>
+  /// Weapons Inherit from Item class All weapons are Equippable By
+  /// Default weapons are not consumable
+  /// </summary>
   public class Weapon : Item
   {
     #region Public Properties
-
-    public int magicalDamage { get; private set; }
-
     /// <summary>
-    /// Weapons Inherit from Item class All weapons are Equippable By
-    /// Default weapons are not consumable
+    /// Weapon Magical Damage
+    /// </summary>
+    public int magicalDamage { get; private set; }
+    /// <summary>
+    /// Weapon Physical Damage
     /// </summary>
     public int physicalDamage { get; private set; }
 

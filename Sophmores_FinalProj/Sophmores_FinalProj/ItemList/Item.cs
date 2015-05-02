@@ -2,19 +2,28 @@
 
 namespace Sophmores_FinalProj
 {
+  /// <summary>
+  /// Base Class for All Items, Implement IComparable
+  /// </summary>
   public class Item : IComparable
   {
     #region Public Properties
-
+    /// <summary>
+    /// True if consumable, false otherwise
+    /// </summary>
     public bool consumable { get; protected set; }
-
+    /// <summary>
+    /// Item Flavor Text
+    /// </summary>
     public string description { get; set; }
 
     /// <summary>
     /// Items are as flexible as you want them to be By default not consumable 
     /// </summary>
     public string name { get; set; }
-
+    /// <summary>
+    /// True if player can Equip, false othewise
+    /// </summary>
     public bool playerCanEquip { get; protected set; }
 
     public string type { get; set; }
