@@ -8,7 +8,7 @@ namespace Sophmores_FinalProj.Utilities
   /// Inventories for characters, contain simple methods
   /// For adding and Removing Items
   /// </summary>
-  public class Inventory 
+  public class Inventory : IEnumerable
   {
     #region Public Properties
 
@@ -86,5 +86,10 @@ namespace Sophmores_FinalProj.Utilities
 
     #endregion Public Methods
 
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+      return contents.Keys.GetEnumerator();
+    }
   }
 }

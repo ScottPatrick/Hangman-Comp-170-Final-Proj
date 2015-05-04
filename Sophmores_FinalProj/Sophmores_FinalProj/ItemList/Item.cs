@@ -60,7 +60,18 @@ namespace Sophmores_FinalProj
       description = Description;
       consumable = false;
     }
-
+    /// <summary>
+    /// Creates new item from existing item
+    /// </summary>
+    /// <param name="otherItem">Item to copy</param>
+    public Item(Item otherItem)
+    {
+      this.name = otherItem.name;
+      this.description = otherItem.description;
+      this.type = otherItem.type;
+      this.playerCanEquip = otherItem.playerCanEquip;
+      this.consumable = otherItem.consumable;
+    }
     #endregion Public Constructors
 
     #region Protected Constructors
@@ -78,11 +89,20 @@ namespace Sophmores_FinalProj
     #region Public Methods
 
     /// <summary>
-    /// Compares Item Names 
+    /// Returns Item name as a string 
     /// </summary>
-    /// <param name="obj"> Item to Compare </param>
-    /// <returns></returns>
-    public int CompareTo(object obj)
+    /// <returns> Returns Item name as a string </returns>
+    public override string ToString()
+    {
+      return this.name;
+    }
+
+    #endregion Public Methods
+
+    /// <summary>
+    /// Compares by name
+    /// </summary>
+    int IComparable.CompareTo(object obj)
     {
       if (obj == null)
       {
@@ -94,18 +114,9 @@ namespace Sophmores_FinalProj
         return this.name.CompareTo(otherItem.name);
       }
       else
+      {
         throw new ArgumentException("Object is not an Item");
+      }
     }
-
-    /// <summary>
-    /// Returns Item name as a string 
-    /// </summary>
-    /// <returns> Returns Item name as a string </returns>
-    public override string ToString()
-    {
-      return this.name;
-    }
-
-    #endregion Public Methods
   }
 }

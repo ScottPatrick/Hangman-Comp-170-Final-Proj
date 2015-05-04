@@ -37,7 +37,7 @@ namespace Sophmores_FinalProj
       if (!enemy.isAlive())
       {
         Console.ForegroundColor = ConsoleColor.DarkYellow;
-        Console.WriteLine("\nYou walk past the fallen {0}...", enemy.Name);
+        Console.WriteLine("\nYou walk past the fallen {0}...", enemy);
         Console.ResetColor();
         return;
       }
@@ -52,7 +52,7 @@ namespace Sophmores_FinalProj
           if (!(enemy.isAlive()))
           {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\n" + enemy.Name + " has fallen!");
+            Console.WriteLine("\n" + enemy + " has fallen!");
             Console.ResetColor();
             starLine();
             GainEnemyItems(player, enemy);
@@ -65,22 +65,27 @@ namespace Sophmores_FinalProj
             if (!player.TutorialComplete)
             {
               Console.ForegroundColor = ConsoleColor.DarkYellow;
-              Console.WriteLine("\nLooks like you could use some help, here's some more health");
+              Console.WriteLine("\nLooks like you could use some help, " + 
+                                "here's some more health");
               Console.ForegroundColor = ConsoleColor.Green;
-              Console.WriteLine("\n{0} has replenished 20 HP!", player.Name);
+              Console.WriteLine("\n{0} has replenished 20 HP!", player);
               Console.ForegroundColor = ConsoleColor.DarkYellow;
-              Console.WriteLine("\nBe more careful, I won't be able to save you later!");
+              Console.WriteLine("\nBe more careful, I won't be able to save " + 
+                                "you later!");
               Console.ResetColor();
             }
             else
             {
               Console.ForegroundColor = ConsoleColor.DarkBlue;
               TextUtil.PrintTextFile("Death.txt");
-              Console.WriteLine("\n..." + player.Name + " has blacked out and is in critical condition...");
+              Console.WriteLine("\n..." + player + " has blacked out " + 
+                                "and is in critical condition...");
               Console.WriteLine("...\n...\n...\n...\nPress any key to continue");
               Console.ReadKey(true);
               Console.ForegroundColor = ConsoleColor.DarkYellow;
-              Console.WriteLine("\n" + player.Name + " has woken back up in the door lobby somehow feeling a little better...");
+              Console.WriteLine("\n" + player + " has woken back up in " + 
+                                "the door lobby somehow feeling a little " + 
+                                "better...");
               Console.ResetColor();
               EndFight(player);
               starLine();
@@ -90,8 +95,9 @@ namespace Sophmores_FinalProj
           if (run)
           {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\n" + player.Name + " has succesfully run from the " + enemy.Name + "!");
-            Console.WriteLine(player.Name + " has returned to the door lobby.");
+            Console.WriteLine("\n" + player + " has succesfully run " + 
+                              "from the " + enemy + "!");
+            Console.WriteLine(player + " has returned to the door lobby.");
             Console.ResetColor();
             EndFight(player);
             starLine();
@@ -142,7 +148,7 @@ namespace Sophmores_FinalProj
         }
       }
       string message = string.Format("\nA Wild {0} has appeared!! It appears " +
-                                    "to have {1}HP.", enemy.Name, enemy.TotalHP);
+                                    "to have {1}HP.", enemy, enemy.TotalHP);
       TextUtil.PressAnyKeyNOBufferClear(message);
     }
 
@@ -183,11 +189,11 @@ namespace Sophmores_FinalProj
             break;
         }
         Console.WriteLine("\n{0}'s {1} shield blocked {2} damage from the " + 
-                          "enemy.", player.Name, type, block);
+                          "enemy.", player, type, block);
       }
       Console.WriteLine("\nEnemy attacks for {0} damage!", attack);
       player.ModifyCurrentHP(-1 * attack);
-      Console.WriteLine("{0} Health: {1} \n", player.Name, player.CurrentHP);
+      Console.WriteLine("{0} Health: {1} \n", player, player.CurrentHP);
     }
     /// <summary>
     /// When Enemy dies, Player gains inventory contents of said Enemy
@@ -198,48 +204,48 @@ namespace Sophmores_FinalProj
     {
       if (!(enemy.isAlive()))
       {
-        foreach (KeyValuePair<Item, int> a in enemy.inventory.contents)
+        foreach (Item item in enemy.inventory)
         {
-          player.AddToInventory(a.Key, 1);
+          player.AddToInventory(item, 1);
           Console.ForegroundColor = ConsoleColor.Yellow;
-          Console.WriteLine("{0} has been added to your inventory!", a.Key.name);
+          Console.WriteLine("{0} has been added to your inventory!", item);
           Console.ResetColor();
-          if (a.Key is Weapon && a.Key.type.ToLower().Trim() != "shield")
+          if (item is Weapon && item.type.ToLower().Trim() != "shield")
           {
-            string question = ("Would you like to equip " + a.Key.name +
+            string question = ("Would you like to equip " + item +
                                "? \n 1)Yes \n 2)No\n");
             Console.WriteLine(question);
             int answer = GetChoice(2);
             Console.ForegroundColor = ConsoleColor.Blue;
             if (answer == 1)
             {
-              player.Equip(a.Key as Weapon);
+              player.Equip(item as Weapon);
               Console.WriteLine("\nYour new weapon has been equipped!\n");
             }
             else if (answer == 2)
             {
-              Console.WriteLine("\nYou have not equipped your newest weapon.\n");
+              Console.WriteLine("\nYou have not equipped {0}.\n", item);
             }
             Console.ResetColor();
           }
-          else if (a.Key is HealthPotion)
+          else if (item is HealthPotion)
           {
-            string question = "Would you like to consume " + a.Key.name +
-                              "?, Its desciption is : " + a.Key.description +
+            string question = "Would you like to consume " + item +
+                              "?, Its desciption is : " + item.description +
                               " \n 1)Yes \n 2)No";
             Console.WriteLine(question);
             int answer = GetChoice(2);
             Console.ForegroundColor = ConsoleColor.Green;
             if (answer == 1)
             {
-              player.ConsumeItem(a.Key as HealthPotion);
-              Console.WriteLine("\nYou have consumed the potion, your " +
-                                "current HP is {0}.", player.CurrentHP);
+              player.ConsumeItem(item as HealthPotion);
+              Console.WriteLine("\nYou have consumed the {0}, your " +
+                                "current HP is {1}.", item, player.CurrentHP);
             }
             else if (answer == 2)
             {
               Console.WriteLine();
-              Console.WriteLine("You have decided not to consume the potion.");
+              Console.WriteLine("You did not to consume the {0}.", item);
               Console.WriteLine();
             }
             Console.ResetColor();
@@ -314,15 +320,15 @@ namespace Sophmores_FinalProj
         }
         else if (curInput == 2)
         {
-          List<Item> curWeapons = player.DisplayAllWeaponsReturnList();
+          List<Weapon> currentWeapons = player.DisplayAllWeaponsReturnList();
 
-          int choice = GetChoice(curWeapons.Count + 1);
-          if (choice - 1 < curWeapons.Count)
+          int choice = GetChoice(currentWeapons.Count + 1);
+          if (choice - 1 < currentWeapons.Count)
           {
-            if ((curWeapons[choice - 1]).playerCanEquip)
+            if ((currentWeapons[choice - 1]).playerCanEquip)
             {
-              player.Equip(curWeapons[choice - 1] as Weapon);
-              Console.WriteLine(msgs[0] + curWeapons[choice - 1].name + ".");
+              player.Equip(currentWeapons[choice - 1]);
+              Console.WriteLine(msgs[0] + currentWeapons[choice - 1] + ".");
               playerTurn = false;
               break;
             }
@@ -348,7 +354,7 @@ namespace Sophmores_FinalProj
               poisonStart = turn;
             }
             player.ConsumeItem(ConsubableItems[choice - 1]);
-            Console.WriteLine(player.Name +  
+            Console.WriteLine(player +  
                               ConsumableMessage(ConsubableItems[choice - 1]));
             playerTurn = false;
             break;
@@ -395,7 +401,7 @@ namespace Sophmores_FinalProj
       {
         Console.WriteLine("Enemy Health: {0} \n", enemy.CurrentHP);
         Console.WriteLine("{0} attacks for {1} damage!",
-                          player.Name, (player.TotalDamage / 2));
+                          player, (player.TotalDamage / 2));
         enemy.ModifyCurrentHP(-1 * (player.TotalDamage / 2));
         Console.WriteLine("The enemy seems to be strong against this weapon " + 
                           "type!");
@@ -403,7 +409,7 @@ namespace Sophmores_FinalProj
         return;
       }
       Console.WriteLine("Enemy Health: {0}", enemy.CurrentHP);
-      Console.WriteLine("{0} attacks for {1} damage!", player.Name,
+      Console.WriteLine("{0} attacks for {1} damage!", player,
                         player.TotalDamage);
       enemy.ModifyCurrentHP(-1 * player.TotalDamage);
       Console.WriteLine("Enemy Health: {0} \n", enemy.CurrentHP);
@@ -437,7 +443,7 @@ namespace Sophmores_FinalProj
           validInp = true;
           break;
         }
-        if (curInput == 2 || curInput == 3)
+        else if (curInput == 2 || curInput == 3)
         {
           if (player.inventory.contents.Count > 0)
           {
@@ -450,17 +456,17 @@ namespace Sophmores_FinalProj
             curInput = ProcessPlayerInput(PlayerInputOptions());
           }
         }
-        if (curInput == 4 && player.TutorialComplete == false)
+        else if (curInput == 4 && player.TutorialComplete == false)
         {
           Console.WriteLine("You can't run, this is your first fight!");
           curInput = ProcessPlayerInput(PlayerInputOptions());
         }
-        if (curInput == 4 && player.TutorialComplete == true)
+        else if (curInput == 4 && player.TutorialComplete == true)
         {
           validInp = true;
           break;
         }
-        if (curInput == 0)
+        else if (curInput == 0)
         {
           Console.WriteLine("You've entered an invalid command");
           curInput = ProcessPlayerInput(PlayerInputOptions());
@@ -475,7 +481,7 @@ namespace Sophmores_FinalProj
     private static void starLine()
     {
       Console.WriteLine();
-      for (int i = 0; i < 65; i++) { Console.Write("*"); }
+      for (int i = 0; i < 79; i++) { Console.Write("*"); }
       Console.WriteLine("*");
     }
     /// <summary>
@@ -488,18 +494,18 @@ namespace Sophmores_FinalProj
       string message;
       if (currentItem is Poison)
       {
-        message = (" has poisoned the enemy with " + currentItem.name +
+        message = (" has poisoned the enemy with " + currentItem +
                    " for three turns.");
         return message;
       }
       else if (currentItem is HealthPotion)
       {
-        message = (" has used " + currentItem.name + " to recover HP.");
+        message = (" has used " + currentItem + " to recover HP.");
         return message;
       }
       else
       {
-        return "";
+        return string.Empty;
       }
     }
 

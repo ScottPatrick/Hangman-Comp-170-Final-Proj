@@ -14,7 +14,7 @@ namespace Sophmores_FinalProj
     ///  Main Character is returned with name from player input
     /// </param>
     /// <returns></returns>
-    public static Player Start(Player mainCharacter)
+    public static Player CharacterCreation(Player mainCharacter)
     {
       TextUtil.PressAnyKeyBufferClear("Press any key to begin your adventure...");
 
@@ -126,14 +126,45 @@ namespace Sophmores_FinalProj
 
       Console.WriteLine("Lets start out by showing you how to fight an " +
         "enemy. Look at that Spider over there. \nWhen you walk up to it " +
-        "it will attempt to attack you. " +
-      "You will be given four options: attack, use swap, and run. \n Lets " +
-      "give it a shot!");
+        "it will attempt to attack you. You will be given four options: " + 
+        "attack, use swap, and run. \n Lets give it a shot!");
 
       TextUtil.PressAnyKeyBufferClear();
       return mainCharacter;
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="mainCharacter">Player</param>
+    public static void PlayerPrompt(Player mainCharacter)
+    {
+      string[] files = new string[] { "Intro_0.txt", "Intro_1.txt" };
+      string[] messages = new string[] { 
+        string.Format("Congratulationss on Defeating your first Enemy {0}!", 
+                      mainCharacter.Name), 
+        string.Format("\"Are you ready to go?\" Odalf asks.") } ;
+      TextUtil.PressAnyKeyBufferClear(messages[0]);
+      TextUtil.PrintTextFile(files[0]);
+      TextUtil.PressAnyKeyBufferClear(messages[1]);
+      TextUtil.PressAnyKeyNOBufferClear(TextUtil.ReturnTextFile(files[1]));
+    }
+    /// <summary>
+    /// Decides Ghost's reponse text
+    /// </summary>
+    /// <param name="playerInput">
+    /// 1 for player agrees to go, 
+    /// player disagrees otherwise
+    /// </param>
+    public static void ChoiceResponse(int playerInput)
+    {
+      if (playerInput == 1)
+      {
+        TextUtil.PressAnyKeyBufferClear("Good to hear, let's go.\n");
+        return;
+      }
+        TextUtil.PressAnyKeyBufferClear("You're coming anyways... we're " + 
+                                        "walking into the tunnel.\n");
+    }
     #endregion Public Methods
   }
 }

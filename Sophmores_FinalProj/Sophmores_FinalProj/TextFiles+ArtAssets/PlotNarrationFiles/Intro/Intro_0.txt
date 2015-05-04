@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+
+  Good job on your combat training, we are now ready to venture into the tunnel.
+It will be challening, but after seeing your skills, I trust you will bring 
+peace to the woods."
+
+  "Alright, so there are three doors ahead of you. Each door will lead to a 
+different part of the cavern.  Each cavern has a unique layout, and is filled 
+with various...creatures."
+
+  "There may be a few puzzles you have to solve. At the end of each you will 
+find a key. After receiving all three keys you will be able to unlock the big 
+door over there," Odalf explains as you listen. 
+
+  "Here is a satchel. You are going to need it in case there is anything you
+need to collect or would like to hold. There is also a notepad in case you 
+want to note anything along the way."
+
+--------------------------------------------------------------------------------

@@ -4,15 +4,17 @@ using System.Text;
 
 namespace Sophmores_FinalProj
 {
+  /// <summary>
+  /// Contains Methods to Create Players that can Equip Weapons, and
+  /// Inspect Items, and more. Inherits from Character
+  /// </summary>
   public class Player : Character
   {
-    /// <summary>
-    /// Contains Methods to Create Players that can Equip Weapons, and
-    /// Inspect Items, and more. Inherits from Character
-    /// </summary>
 
     #region Private Fields
-
+    /// <summary>
+    /// Player's Default Rusty Sword
+    /// </summary>
     private Weapon DefaultWeapon = new Weapon();
 
     #endregion Private Fields
@@ -23,18 +25,26 @@ namespace Sophmores_FinalProj
     /// number of the current door the player is on. 
     /// </summary>
     public int currentDoor { get; set; }
-
+    /// <summary>
+    /// Current Level the player is in
+    /// </summary>
     public int currentStage { get; set; }
 
     /// <summary>
     /// list of door numbers that have been opened 
     /// </summary>
     public List<int> DoorsOpened { get; set; }
-
+    /// <summary>
+    /// Player's currently equipped weapon
+    /// </summary>
     public Weapon EquippedWeapon { get; private set; }
-
+    /// <summary>
+    /// Player's Magical Damage Stat
+    /// </summary>
     public int MagicDamage { get; private set; }
-
+    /// <summary>
+    /// Player;s Physical Damage Stat
+    /// </summary>
     public int PhysicalDamage { get; private set; }
 
     /// <summary>
@@ -56,6 +66,9 @@ namespace Sophmores_FinalProj
     /// true after player completes tutorial 
     /// </summary>
     public bool TutorialComplete { get; set; }
+    /// <summary>
+    /// Player's shield stat, may be implemented as item later
+    /// </summary>
     public int Shield { get; set; }    
 
     #endregion Public Properties
@@ -128,7 +141,11 @@ namespace Sophmores_FinalProj
     #endregion Public Constructors
 
     #region Public Methods
-
+    /// <summary>
+    /// Allows player to consume health potions
+    /// Or use poisions against the enemy
+    /// </summary>
+    /// <param name="theItem"></param>
     public void ConsumeItem(Item theItem)
     {
       if (theItem is HealthPotion)
@@ -142,21 +159,25 @@ namespace Sophmores_FinalProj
       Update();
     }
 
-    public List<Item> DisplayAllWeaponsReturnList()
+    /// <summary>
+    /// Displays Players Weapons in Inventory
+    /// </summary>
+    /// <returns></returns>
+    public List<Weapon> DisplayAllWeaponsReturnList()
     {
       int count = 1;
-      List<Item> conList = new List<Item> { };
+      List<Weapon> conList = new List<Weapon>();
       string x = "\nWeapons: \n";
       StringBuilder builder = new StringBuilder(x);
-      foreach (KeyValuePair<Item, int> a in inventory.contents)
+      foreach (Item item in inventory)
       {
-          if (a.Key is Weapon && a.Key.type.ToLower().Trim() != "shield")
+          if (item is Weapon && item.type.ToLower().Trim() != "shield")
         {
-            if (a.Key.name != EquippedWeapon.name)
+            if (item != EquippedWeapon)
             {
-                builder.AppendLine(count + ") " + a.Key.name + ", " + a.Key.type);
+                builder.AppendLine(count + ") " + item + ", " + item.type);
                 count++;
-                conList.Add(a.Key);
+                conList.Add(new Item(item) as Weapon);
             }
         }
       }
@@ -164,36 +185,63 @@ namespace Sophmores_FinalProj
       Console.WriteLine("" + builder);
       return conList;
     }
-
+    /// <summary>
+    /// Displays Player's Consumables in Inventory
+    /// </summary>
     public void DisplayConsumables()
     {
       int i = 0;
       string x = "Consumables: ";
       StringBuilder builder = new StringBuilder(x);
-      foreach (KeyValuePair<Item, int> a in inventory.contents)
+      foreach (Item item in inventory)
       {
-        if (a.Key.consumable)
+        if (item.consumable)
         {
-          builder.AppendLine(i + ") " + a.Key.name + ", " + a.Value);
+          int numberofItems = 1;
+          if (inventory.contents.TryGetValue(item, out numberofItems))
+          {
+            if (numberofItems > 1)
+            {
+              builder.AppendLine(i + ") " + item + ", " + numberofItems);
+              i++;
+              continue;
+            }
+          }
+          builder.AppendLine(i + ") " + item);
           i++;
         }
       }
       Console.WriteLine("" + builder);
     }
-
+    /// <summary>
+    /// Displays Player's Consumables in Inventory
+    /// </summary>
+    /// <returns>Consumable Items as a List</returns>
     public List<Item> DisplayConsumablesReturnList()
     {
       int count = 1;
-      List<Item> conList = new List<Item> { };
+      List<Item> conList = new List<Item>();
       string x = "\nConsumables: \n";
       StringBuilder builder = new StringBuilder(x);
-      foreach (KeyValuePair<Item, int> a in inventory.contents)
+      foreach (Item item in inventory)
       {
-        if (a.Key.consumable)
+        if (item.consumable)
         {
-          builder.AppendLine(count + ") " + a.Key.name + ", " + a.Key.type + ", Quantity: " + a.Value);
+          conList.Add(item);
+          int numberofItems = 1;
+          if (inventory.contents.TryGetValue(item, out numberofItems))
+          {
+            if (numberofItems > 1)
+            {
+              builder.AppendLine(count + ") " + item + ", " + item.type + 
+                                 ", Quantity: " + numberofItems);
+              count++;
+              continue;
+            }
+          }
+          builder.AppendLine(count + ") " + item + ", " + item.type + 
+                             ", Quantity: " + 1);
           count++;
-          conList.Add(a.Key);
         }
       }
       builder.AppendLine(count + ") Don't use an item.");
@@ -332,9 +380,10 @@ namespace Sophmores_FinalProj
     {
         int i = 1;
         Console.WriteLine("\nAll Items:");
-        foreach (Item s in itemList)
+        foreach (Item item in itemList)
         {
-            Console.WriteLine(i + ") " + s.name + ", Quantity: " + inventory.contents[s]);
+            Console.WriteLine(i + ") " + item + ", Quantity: " + 
+                              inventory.contents[item]);
             i++;
       }
     }
@@ -343,12 +392,12 @@ namespace Sophmores_FinalProj
     {
       int i = 0;
       Console.WriteLine("Keys:");
-      foreach (Key s in keyList)
+      foreach (Key key in keyList)
       {
-        Key key = s as Key;
-        if (key != null)
+        Key tryKey = key as Key;
+        if (tryKey != null)
         {
-          Console.WriteLine(i + ") " + s.name + " " + inventory.contents[s]);
+          Console.WriteLine(i + ") " + key + " " + inventory.contents[key]);
           i++;
         }
       }
@@ -358,12 +407,12 @@ namespace Sophmores_FinalProj
     {
       int i = 0;
       Console.WriteLine("Potions:");
-      foreach (HealthPotion s in potionList)
+      foreach (HealthPotion potion in potionList)
       {
-        HealthPotion potion = s as HealthPotion;
-        if (potion != null)
+        HealthPotion tryPotion = potion as HealthPotion;
+        if (tryPotion != null)
         {
-          Console.WriteLine(i + ") " + s.name + " " + inventory.contents[s]);
+          Console.WriteLine(i + ") " + potion + " " + inventory.contents[potion]);
           i++;
         }
       }
@@ -373,12 +422,12 @@ namespace Sophmores_FinalProj
     {
       int i = 0;
       Console.WriteLine("Weapons:");
-      foreach (Item s in weaponList)
+      foreach (Item weapon in weaponList)
       {
-        Weapon weapon = s as Weapon;
-        if (weapon != null)
+        Weapon tryWeapon = weapon as Weapon;
+        if (tryWeapon != null)
         {
-          Console.WriteLine(i + ") " + s.name + " " + inventory.contents[s]);
+          Console.WriteLine(i + ") " + weapon + " " + inventory.contents[weapon]);
           i++;
         }
       }

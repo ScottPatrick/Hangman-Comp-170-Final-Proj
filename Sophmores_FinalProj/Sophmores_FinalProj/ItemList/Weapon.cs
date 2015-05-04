@@ -43,14 +43,10 @@
     /// </summary>
     /// <param name="OldWeapon"> Weapon to Copy </param>
     public Weapon(Weapon OldWeapon)
+      : base(OldWeapon)
     {
-      name = OldWeapon.name;
-      type = OldWeapon.type;
-      description = OldWeapon.description;
       physicalDamage = OldWeapon.physicalDamage;
       magicalDamage = OldWeapon.magicalDamage;
-      playerCanEquip = true;
-      consumable = false;
     }
 
     /// <summary>
